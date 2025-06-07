@@ -2035,6 +2035,39 @@ local GameName = game:GetService("MarketplaceService"):GetProductInfo(game.Place
         return label
     end
     --
+    function sections:Divider()
+        --
+        local window = self.window
+        local page = self.page
+        local section = self
+        --
+        local divider = {axis = section.currentAxis}
+        --
+        local divider_outline = utility:Create("Frame", {Vector2.new(4, divider.axis), section.section_frame}, {
+            Size = utility:Size(0, section.section_frame.Size.X - 8, 0, 5),
+            Position = utility:Position(0.5, 0, 0, divider.axis, section.section_frame),
+            Color = theme.outline,
+            Visible = page.open
+        }, section.visibleContent)
+        --
+        library.colors[divider_outline] = {
+            Color = "outline"
+        }
+        --
+        local divider_inline = utility:Create("Frame", {Vector2.new(1, 1), divider_outline}, {
+            Size = utility:Size(1, -2, 1, -2, divider_outline),
+            Position = utility:Position(0, 1, 0, 1, divider_outline),
+            Color = theme.inline,
+            Visible = page.open
+        }, section.visibleContent)
+        --
+        library.colors[divider_inline] = {
+            Color = "inline"
+        }
+        --
+        return divider
+    end
+    --
     function sections:Textbox(info)
         local info = info or {}
         local placeholder = info.placeholder or info.PlaceHolder or ""
