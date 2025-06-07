@@ -351,6 +351,7 @@ do
         --
         return Text:sub(0, Max)
     end
+
 end
 -- // Library Functions
 do
@@ -3712,6 +3713,7 @@ local GameName = game:GetService("MarketplaceService"):GetProductInfo(game.Place
             if typeof(tbl) == "table" then
                 multibox.current = tbl
                 multibox_value.Text =  utility:WrapText(multibox:Serialize(multibox:Resort(multibox.current, options)), multibox_frame.Size.X - 23)
+                print("Call 1")
             end
         end
         --
@@ -3733,12 +3735,14 @@ local GameName = game:GetService("MarketplaceService"):GetProductInfo(game.Place
                         if utility:MouseOverDrawing({v[2].Position.X, v[2].Position.Y, v[2].Position.X + v[2].Size.X, v[2].Position.Y + v[2].Size.Y}) and v[1].Text ~= multibox.current then
                             if not table.find(multibox.current, v[1].Text) then
                                 multibox.current[#multibox.current + 1] = v[1].Text
-                                multibox_value.Text = multibox:Serialize(multibox:Resort(multibox.current, options))
+                                --multibox_value.Text = multibox:Serialize(multibox:Resort(multibox.current, options))
+                                multibox_value.Text =  utility:WrapText(multibox:Serialize(multibox:Resort(multibox.current, options)), multibox_frame.Size.X - 23)
                                 multibox:Update()
                             else
                                 if #multibox.current > min then
                                     table.remove(multibox.current, table.find(multibox.current, v[1].Text))
-                                    multibox_value.Text = multibox:Serialize(multibox:Resort(multibox.current, options))
+                                    --multibox_value.Text = multibox:Serialize(multibox:Resort(multibox.current, options))
+                                    multibox_value.Text =  utility:WrapText(multibox:Serialize(multibox:Resort(multibox.current, options)), multibox_frame.Size.X - 23)
                                     multibox:Update()
                                 end
                             end
