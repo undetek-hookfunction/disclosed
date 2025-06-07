@@ -245,6 +245,25 @@ do
         end
     end
     --
+    function utility:LoadImage(instance, imageName, imageLink)
+        local data
+        --
+        if isfile(library.folders.assets.."/"..imageName..".png") then
+            data = readfile(library.folders.assets.."/"..imageName..".png")
+        else
+            if imageLink then
+                data = request({Url = imageLink})
+                writefile(library.folders.assets.."/"..imageName..".png", data.Body)
+            else
+                return
+            end
+        end
+        --
+        if data and instance then
+            instance.Data = data
+        end
+    end
+    --
     function utility:GetSubPrefix(str)
         local str = tostring(str):gsub(" ","")
         local var = ""
@@ -2321,6 +2340,7 @@ local GameName = game:GetService("MarketplaceService"):GetProductInfo(game.Place
                 Transparency = 0.5,
                 Visible = page.open
             }, section.visibleContent)
+
             --
             --
             function colorpicker:Set(color, transp_val)
@@ -2557,9 +2577,11 @@ local GameName = game:GetService("MarketplaceService"):GetProductInfo(game.Place
                                     Color = Color3.fromHSV(0, 0, 1 - colorpicker.current[4]),
                                 }, colorpicker.holder.drawings);colorpicker.holder.transparency_cursor[3] = colorpicker_open_transparency_cursor_color
                                 --
-                                --utility:LoadImage(colorpicker_open_transparency_image, "transp", "https://i.imgur.com/VcMAYjL.png")
+                                utility:LoadImage(colorpicker_open_transparency_image, "transp", "https://i.imgur.com/VcMAYjL.png")
                             end
                             --
+                            utility:LoadImage(colorpicker_open_picker_image, "valsat", "https://i.imgur.com/wpDRqVH.png")
+                            utility:LoadImage(colorpicker_open_huepicker_image, "hue", "https://i.imgur.com/iEOsHFv.png")
                             --
                             window.currentContent.frame = colorpicker_open_inline
                             window.currentContent.colorpicker = colorpicker
@@ -3793,7 +3815,7 @@ local GameName = game:GetService("MarketplaceService"):GetProductInfo(game.Place
                                 Visible = page.open
                             }, multibox.holder.drawings)
                             --
-                            utility:LoadImage(multibox_value_gradient, "gradient", "https://i.imgur.com/5hmlrjX.png")]]
+                            utility:LoadImage(multibox_value_gradient, "gradient", "rbxassetid://8180999986")]]
                             --
                             local multibox_value = utility:Create("TextLabel", {Vector2.new(table.find(multibox.current, v) and 8 or 6,2), multibox_value_frame}, {
                                 Text = v,
@@ -4489,9 +4511,11 @@ local GameName = game:GetService("MarketplaceService"):GetProductInfo(game.Place
                                 Position = utility:Position(0, 1, 0, 1, colorpicker_open_transparency_cursor_inline),
                                 Color = Color3.fromHSV(0, 0, 1 - colorpicker.current[4]),
                             }, colorpicker.holder.drawings);colorpicker.holder.transparency_cursor[3] = colorpicker_open_transparency_cursor_color
-                            --                            --utility:LoadImage(colorpicker_open_transparency_image, "transp", "https://i.imgur.com/VcMAYjL.png")
+                            utility:LoadImage(colorpicker_open_transparency_image, "transp", "https://i.imgur.com/VcMAYjL.png")
                         end
                         --
+                        utility:LoadImage(colorpicker_open_picker_image, "valsat", "https://i.imgur.com/wpDRqVH.png")
+                        utility:LoadImage(colorpicker_open_huepicker_image, "hue", "https://i.imgur.com/iEOsHFv.png")
                         --
                         window.currentContent.frame = colorpicker_open_inline
                         window.currentContent.colorpicker = colorpicker
@@ -4630,6 +4654,7 @@ local GameName = game:GetService("MarketplaceService"):GetProductInfo(game.Place
                 Transparency = 0.5,
                 Visible = page.open
             }, section.visibleContent)
+
             --
             --
             function colorpicker:Set(color, transp_val)
@@ -4776,6 +4801,7 @@ local GameName = game:GetService("MarketplaceService"):GetProductInfo(game.Place
                                 Position = utility:Position(0, 0, 0 , 0, colorpicker_open_picker_bg),
                             }, colorpicker.holder.drawings);colorpicker.holder.picker = colorpicker_open_picker_image
                             --
+                            --
                             local colorpicker_open_picker_cursor = utility:Create("Image", {Vector2.new((colorpicker_open_picker_image.Size.X*colorpicker.current[2])-3,(colorpicker_open_picker_image.Size.Y*(1-colorpicker.current[3]))-3), colorpicker_open_picker_image}, {
                                 Size = utility:Size(0, 6, 0, 6, colorpicker_open_picker_image),
                                 Position = utility:Position(colorpicker.current[2], -3, 1-colorpicker.current[3] , -3, colorpicker_open_picker_image),
@@ -4797,6 +4823,7 @@ local GameName = game:GetService("MarketplaceService"):GetProductInfo(game.Place
                                 Size = utility:Size(1, -2, 1, -2, colorpicker_open_huepicker_inline),
                                 Position = utility:Position(0, 1, 0 , 1, colorpicker_open_huepicker_inline),
                             }, colorpicker.holder.drawings);colorpicker.holder.huepicker = colorpicker_open_huepicker_image
+                            --
                             --
                             local colorpicker_open_huepicker_cursor_outline = utility:Create("Frame", {Vector2.new(-3,(colorpicker_open_huepicker_image.Size.Y*colorpicker.current[1])-3), colorpicker_open_huepicker_image}, {
                                 Size = utility:Size(1, 6, 0, 6, colorpicker_open_huepicker_image),
@@ -4859,8 +4886,11 @@ local GameName = game:GetService("MarketplaceService"):GetProductInfo(game.Place
                                 }, colorpicker.holder.drawings);colorpicker.holder.transparency_cursor[3] = colorpicker_open_transparency_cursor_color
                                 --
         
-                                --utility:LoadImage(colorpicker_open_transparency_image, "transp", "https://i.imgur.com/VcMAYjL.png")
+                                utility:LoadImage(colorpicker_open_transparency_image, "transp", "https://i.imgur.com/VcMAYjL.png")
                             end
+                            --
+                            utility:LoadImage(colorpicker_open_picker_image, "valsat", "https://i.imgur.com/wpDRqVH.png")
+                            utility:LoadImage(colorpicker_open_huepicker_image, "hue", "https://i.imgur.com/iEOsHFv.png")
                             --
                             window.currentContent.frame = colorpicker_open_inline
                             window.currentContent.colorpicker = colorpicker
