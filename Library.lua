@@ -2044,7 +2044,7 @@ local GameName = game:GetService("MarketplaceService"):GetProductInfo(game.Place
         local divider = {axis = section.currentAxis}
         --
         local divider_outline = utility:Create("Frame", {Vector2.new(4, divider.axis), section.section_frame}, {
-            Size = utility:Size(0, section.section_frame.Size.X - 8, 0, 5),
+            Size = utility:Size(0, section.section_frame.Size.X - 8, 0, 6),
             Position = utility:Position(0.5, 0, 0, divider.axis, section.section_frame),
             Color = theme.outline,
             Visible = page.open
@@ -2064,6 +2064,20 @@ local GameName = game:GetService("MarketplaceService"):GetProductInfo(game.Place
         library.colors[divider_inline] = {
             Color = "inline"
         }
+        --
+        local divider_frame = utility:Create("Frame", {Vector2.new(1, 1), divider_inline}, {
+            Size = utility:Size(1, -2, 1, -2, divider_inline),
+            Position = utility:Position(0, 1, 0, 1, divider_inline),
+            Color = theme.darkcontrast,
+            Visible = page.open
+        }, section.visibleContent)
+        --
+        library.colors[divider_frame] = {
+            Color = "darkconstrast"
+        }
+        --
+        section.currentAxis += divider_outline.Size.Y + 4
+        section:Update()
         --
         return divider
     end
