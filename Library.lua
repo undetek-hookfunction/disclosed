@@ -5705,6 +5705,11 @@ do
             end
         end
         --
+        function multibox:set_callback(p_callback)
+            callback = p_callback
+            callback(self:get())
+        end
+        --
         function multibox:Get()
             return multibox.current
         end
