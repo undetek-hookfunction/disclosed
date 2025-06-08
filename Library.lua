@@ -20,9 +20,9 @@ local library = {
     ended = {},
     colors = {},
     folders = {
-        main = "Linux",
-        assets = "Linux/assets",
-        configs = "Linux/configs"
+        main = "disclosed",
+        assets = "Linux/disclosed",
+        configs = "Linux/disclosed"
     },
     shared = {
         initialized = false,
