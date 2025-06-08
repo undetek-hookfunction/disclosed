@@ -5725,11 +5725,13 @@ do
                                 multibox.current[#multibox.current + 1] = v[1].Text
                                 multibox_value.Text = utility:WrapText(multibox:Serialize(multibox:Resort(multibox.current, multibox.options)), multibox_frame.Size.X - 25)
                                 multibox:Update()
+                                callback(multibox:Get())
                             else
                                 if #multibox.current > min then
                                     Remove(multibox.current, Find(multibox.current, v[1].Text))
                                     multibox_value.Text = utility:WrapText(multibox:Serialize(multibox:Resort(multibox.current, multibox.options)), multibox_frame.Size.X - 25)
                                     multibox:Update()
+                                    callback(multibox:Get())
                                 end
                             end
                         end
